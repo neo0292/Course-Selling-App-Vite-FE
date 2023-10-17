@@ -72,7 +72,7 @@ const Signup = () => {
             <div>
               <button
                 onClick={async() => {
-                  const res = await axios.post('/admin/signup',{
+                  const res = await axios.post('http://localhost:8000/admin/signup',{
                       username: email,
                       password: password
                   })
