@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [email, setEmail]= useState('');
+  const [password, setPassword] = useState('');
   
   return (
    <>  
@@ -27,6 +30,11 @@ const Signup = () => {
               </label>
               <div className="mt-2">
                 <input
+                onChange={(e) =>{
+                  let ele= e.target.value;
+                  setEmail(ele);
+                  console.log("new email address: " + setEmail);
+                } }
                   id="email"
                   name="email"
                   type="email"
@@ -46,6 +54,11 @@ const Signup = () => {
               </div>
               <div className="mt-2">
                 <input
+                  onChange={(e) =>{
+                    let ele= e.target.value;
+                    setPassword(ele);
+                    console.log("new password: " + setPassword);
+                  } }
                   id="password"
                   name="password"
                   type="password"
@@ -58,6 +71,15 @@ const Signup = () => {
 
             <div>
               <button
+                onClick={async() => {
+                  const res = await axios.post('/admin/signup',{
+                      username: email,
+                      password: password
+                  })
+                  let data = res.data;
+                  localStorage.setItem('token', data.token);
+
+                }}
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >

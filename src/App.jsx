@@ -11,9 +11,11 @@ function App() {
   return (
     <div>
       
-      <Appbartailwind></Appbartailwind>
+      
       <Router>
+      <Appbar></Appbar>
         <Routes>
+        
           <Route path="/login" element= {<Login/>}></Route>
           <Route path="/home" element= {<Home/>}></Route>
           <Route path="/signup" element= {<Signup/>}></Route>

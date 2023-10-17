@@ -1,13 +1,24 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Appbar = () => {
+  const navigate = useNavigate(); 
+
   return (
     <>
-    <div className="flex justify-between place-items-center pl-5 pr-5 bg-slate-500 h-16 shadow-md">
-      <div className='font-mono text-3xl font-bold'> CORSERA</div>
-      <div className=' flex-col m-'>
-        <button className='m-5 px-2 border-solid border-2 border-white-900  bg-blue-500 rounded-lg text-2xl'>Signup</button>
-          <button className='m-5 px-2 border-solid border-2 border-white-900 bg-blue-500 rounded-lg text-2xl'>Login</button>
+    <div className="flex flex-row items-center justify-between pl-5 pr-5 bg-gray-800 h-16 shadow-md">
+      <div className='cursor-pointer'>
+        <img onClick={() =>navigate('/home')}
+            className=" mx-5 h-10 w-auto"
+            src="/coursera.jpg"
+            alt="Coursera"
+          />
+      </div>  
+
+      <div className=' flex flex-row m-2'>
+        <button onClick={()=>navigate('/signup')} className="flex w-16 justify-center rounded-md bg-indigo-600 mx-10 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Signup</button>
+
+          <button onClick={()=>navigate('/login')} className="flex w-16 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login</button>
       </div>
 
   
