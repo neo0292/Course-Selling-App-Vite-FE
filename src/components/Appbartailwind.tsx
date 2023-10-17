@@ -37,7 +37,7 @@ export default function Example() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="h-8 w-auto"
-                    src="/public/coursera.jpg"
+                    src="/coursera.jpg"
                     alt="coursera"
                   />
                 </div>

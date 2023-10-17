@@ -1,6 +1,9 @@
 import React from 'react'
-// import logo from '/courseranew.jpg'
+import { useNavigate } from 'react-router-dom'
+
 const Signup = () => {
+  const navigate = useNavigate();
+  
   return (
    <>  
   
@@ -65,9 +68,9 @@ const Signup = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Already a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            <button onClick={()=>navigate('/login')} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               Login here
-            </a>
+            </button>
           </p>
         </div>
       </div>

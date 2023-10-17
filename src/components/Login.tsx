@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  const navigate = useNavigate();  
+  
   return (
     <div>
       
@@ -11,7 +14,7 @@ const Login = () => {
             src="/public/coursera.jpg"
             alt="coursera"
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
         </div>
@@ -69,9 +72,9 @@ const Login = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+           <button onClick={()=>navigate('/signup')} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               Signup here
-            </a>
+            </button>
           </p>
         </div>
       </div>
