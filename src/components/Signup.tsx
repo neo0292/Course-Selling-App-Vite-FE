@@ -33,7 +33,7 @@ const Signup = () => {
                 onChange={(e) =>{
                   let ele= e.target.value;
                   setEmail(ele);
-                  console.log("new email address: " + setEmail);
+                  console.log("new email address: " + ele);
                 } }
                   id="email"
                   name="email"
@@ -57,7 +57,7 @@ const Signup = () => {
                   onChange={(e) =>{
                     let ele= e.target.value;
                     setPassword(ele);
-                    console.log("new password: " + setPassword);
+                    console.log("new password: " + ele);
                   } }
                   id="password"
                   name="password"
@@ -72,11 +72,12 @@ const Signup = () => {
             <div>
               <button
                 onClick={async() => {
-                  const res = await axios.post('http://localhost:8000/admin/signup',{
+                  const resonse = await axios.post('http://localhost:8000/admin/signup',{
                       username: email,
                       password: password
                   })
-                  let data = res.data;
+                  console.log('req sending');
+                  let data = resonse.data;
                   localStorage.setItem('token', data.token);
 
                 }}

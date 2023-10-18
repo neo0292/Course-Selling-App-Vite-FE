@@ -5,6 +5,7 @@ import Appbar from "./components/Appbar"
 import Login from "./components/Login"
 import Appbartailwind from "./components/Appbartailwind"
 import Home from "./components/home"
+import WelcomeUser from "./components/WelcomeUser"
 function App() {
   
 
@@ -17,8 +18,10 @@ function App() {
         <Routes>
         
           <Route path="/login" element= {<Login/>}></Route>
+          <Route path="/" element= {<Home/>}></Route>
           <Route path="/home" element= {<Home/>}></Route>
           <Route path="/signup" element= {<Signup/>}></Route>
+          <Route path="/welcomeuser" element= {<WelcomeUser/>}></Route>
         </Routes>
       </Router>
       

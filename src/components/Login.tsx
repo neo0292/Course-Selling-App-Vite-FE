@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 const Login = () => {
   const navigate = useNavigate();  
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   
   return (
     <div>
@@ -27,6 +31,12 @@ const Login = () => {
               </label>
               <div className="mt-2">
                 <input
+                  onChange={(e)=>{
+                    let input = e.target.value;
+                    setUsername(input);
+                    console.log(input);
+                  }}
+
                   id="email"
                   name="email"
                   type="email"
@@ -50,6 +60,11 @@ const Login = () => {
               </div>
               <div className="mt-2">
                 <input
+                  onChange={(e) => {
+                    let input = e.target.value;
+                    setPassword(input);
+                    console.log(input);
+                  }}
                   id="password"
                   name="password"
                   type="password"
@@ -62,6 +77,22 @@ const Login = () => {
 
             <div>
               <button
+                onClick={ async() =>{
+                  const response = await axios.post('http://localhost:8000/admin/login',{
+                    username: username,
+                    password: password
+                  }
+                  //below code not working properly backend cant accept id pass through headers = debug later
+                  // ,{
+                  // headers: {
+                  //   'Content-Type': 'application/json'
+                  //   }
+                  // }
+                  );
+                  
+                  let data =  response.data;
+                  console.log(data);
+                } }
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
