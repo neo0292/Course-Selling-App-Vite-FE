@@ -7,6 +7,7 @@ import Appbartailwind from "./components/Appbartailwind"
 import Home from "./components/home"
 import WelcomeUser from "./components/WelcomeUser"
 import AddCourse from "./components/AddCourse"
+import AllCourses from "./components/AllCourses"
 function App() {
   
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/signup" element= {<Signup/>}></Route>
           <Route path="/welcomeuser" element= {<WelcomeUser/>}></Route>
           <Route path="/AddCourse" element= {<AddCourse/>}></Route>
+          <Route path="/AllCourses" element= {<AllCourses/>}></Route>
         </Routes>
       </Router>
       
