@@ -91,6 +91,10 @@ const Login = () => {
                   );
                   
                   let data =  response.data;
+                  localStorage.setItem('token',data.token);
+                  if(data.token){
+                    navigate('/welcomeuser');
+                  }
                   console.log(data);
                 } }
                 type="submit"

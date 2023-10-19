@@ -1,6 +1,6 @@
 import React from 'react'
 
-function WelcomeUser() {
+const  WelcomeUser = ()=> {
   return (
     <div className='
     display: flex;
