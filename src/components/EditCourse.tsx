@@ -37,8 +37,10 @@ const EditCourse = () => {
   return (
     <>
     <Topbar course = {course}></Topbar>
+    <div className='grid grid-flow-col '>
     <EditCard course = {course} setCourse = {setCourse}></EditCard>
     <DisplayCard></DisplayCard>
+    </div>
     </>
   )
 }
@@ -46,7 +48,7 @@ const EditCourse = () => {
 const Topbar =({course}) => {
   return (
     <>
-    <div className='flex flex-row  justify-center items-center h-20 w-screen bg-sky-300'>{course.title}</div>  
+    <div className='flex flex-row  justify-center items-center h-10 w-screen bg-sky-300'>{course.title}</div>  
   </>
   )
 
@@ -55,6 +57,7 @@ const Topbar =({course}) => {
 
 
 const EditCard = ({course,setCourse}) => {
+  const [courseId,setCourseId] = useState(course._id)
   const [title, setTitle] = useState(course.title);
   const [description, setDescription] = useState(course.description);
   const [imageLink, setImageLink] = useState(course.imageLink);
@@ -63,10 +66,10 @@ const EditCard = ({course,setCourse}) => {
   const navigate = useNavigate();
   return (
     <>
-    <div className="flex flex-col h-screen bg-gradient-to-r from-indigo-200 via-indigo-400 to-indigo-800">
+    <div className="flex flex-col h-full w-screen bg-gradient-to-r from-indigo-200 via-indigo-400 to-indigo-800">
     
     <div className="
-    w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 my-10 mx-auto">
+    w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 my-1 mx-auto">
     <div className="space-y-6">
         <h5 className="text-xl font-medium text-gray-900 dark:text-white">Edit this course</h5>
         <div>
@@ -108,20 +111,26 @@ const EditCard = ({course,setCourse}) => {
      
         <button 
         onClick={async() =>{
-          axios.put('http://localhost:8000/admin/courses/' + course._Id,{
+        const response = await axios.put('http://localhost:8000/admin/courses/' + courseId,{
+            _id : courseId,
             title : title,
             description : description,
             imageLink : imageLink,
             price : price
           }, {
-            headers : { 'authorization': 'Bearer ' + localStorage.getItem('token') 
+            headers : { 
+                       'authorization': 'Bearer ' + localStorage.getItem('token') 
             }
-          })
-          setCourse(
-            course.title=title,
-            course.description=description,
-            course.imageLink=imageLink,
-            course.price=price)
+          });
+          console.log(response.data);
+          let updatedCourse = {
+            _id : course._id,
+            title : title,
+            description : description,
+            imageLink :imageLink,
+            price : price};
+            setCourse(updatedCourse);
+            alert("Course updated successfully");
         }}
         type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update course</button>
 
@@ -137,9 +146,7 @@ const EditCard = ({course,setCourse}) => {
 )
 }
 
-
-
-
+//below componenet pending to update
 const DisplayCard = () => {
   return (
     <div>displayCard</div>
