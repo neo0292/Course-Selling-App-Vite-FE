@@ -149,7 +149,10 @@ const EditCard = ({course,setCourse}) => {
 //below componenet pending to update
 const DisplayCard = () => {
   return (
-    <div>displayCard</div>
+    <div className='flex flex-row justify-center z-10 h-36 w-20 bg-slate-400'>displayCard here
+
+
+    </div>
   )
 }
 

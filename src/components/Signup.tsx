@@ -1,11 +1,19 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { useRecoilState } from 'recoil';
+import { userState } from '../state/atoms/user';
+
+
 
 const Signup = () => {
   const navigate = useNavigate();
-  const [email, setEmail]= useState('');
+  const [emailAtom,setEmailAtom] = useRecoilState(userState); 
+  const [email,setEmail] = useState('');
+  console.log(emailAtom)
+ 
   const [password, setPassword] = useState('');
+
   
   return (
    <>  
@@ -32,7 +40,7 @@ const Signup = () => {
                 <input
                 onChange={(e) =>{
                   let ele= e.target.value;
-                  setEmail(ele);
+                   setEmail(ele);
                   console.log("new email address: " + ele);
                 } }
                   id="email"
@@ -79,7 +87,9 @@ const Signup = () => {
                   console.log('req sending');
                   let data = resonse.data;
                   localStorage.setItem('token', data.token);
-
+                  setEmailAtom({userEmail:email});
+                  navigate('/welcomeuser');
+                 
                 }}
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
