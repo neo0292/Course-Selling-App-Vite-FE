@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { useRecoilState } from 'recoil';
+import { userState } from '../state/atoms/user';
+
 
 const Login = () => {
-  const navigate = useNavigate();  
+  const navigate = useNavigate(); 
+  const [email, setEmail] = useRecoilState(userState); 
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -92,6 +96,7 @@ const Login = () => {
                   
                   let data =  response.data;
                   localStorage.setItem('token',data.token);
+                  setEmail({userEmail: username});
                   if(data.token){
                     navigate('/welcomeuser');
                   }
@@ -107,7 +112,8 @@ const Login = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{' '}
-           <button onClick={()=>navigate('/signup')} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+           <button onClick={()=>
+            navigate('/signup')} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               Signup here
             </button>
           </p>
